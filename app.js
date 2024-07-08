@@ -12,11 +12,15 @@ const helpMessage = `<b>To open market please press the button "Market"</b>`
 bot.on('message', async msg => {
     const chatId = msg.chat.id;
 
+    if(msg.web_app_data?.data) {
+        console.log(msg.web_app_data?.data);
+    }
+
     if(['/start', '/market'].includes(msg.text)) {
         await bot.sendMessage(chatId, helpMessage, {
             reply_markup: {
                 keyboard: [
-                    [{text: 'Market', web_app: {url: webUrl}}]
+                    [{text: '🏪', web_app: {url: webUrl}}]
                 ]
             },
             parse_mode: 'html'
